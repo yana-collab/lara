@@ -17,17 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', function () {
-    return '<h1>Hello dude </h1>';
-});
+Route::get('/greeting', [\App\Http\Controllers\GreetingController::class, 'make']);
 
-Route::get('/button', function () {
-    return '<button> click </button>';
-});
 
-Route::get('/form', function () {
-    return '<form>
-            <input placeholder="name"> </input>
-            </form>';
-});
+
+
+Route::get('/category', [\App\Http\Controllers\Admin\NewsCatController::class,'index']);
+Route::get('/news/card/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'card']);
 
