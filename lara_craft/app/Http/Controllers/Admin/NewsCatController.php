@@ -7,27 +7,44 @@ use App\Http\Controllers\Controller;
 class NewsCatController extends Controller
 {
     private $news = [
-        1 => [
-            'title' => 'Politics'
+         [
+             'id' => 1,
+            'title' => 'Politics',
+             'text' => 'Somewhere over the rainbow'
+
         ],
-        2 => [
-            'title' => 'Sport'
+        [
+            'id' => 2,
+            'title' => 'Sport',
+            'text' => 'Somewhere over the rainbow'
+
         ],
-        3 => [
-            'title' => 'Breaking News'
+        [
+            'id' => 3,
+            'title' => 'Animals',
+            'text' => 'Somewhere over the rainbow'
+
+        ],
+        [
+            'id' => 4,
+            'title' => 'IT',
+            'text' => 'Somewhere over the rainbow'
+
         ]
     ];
-    public function index()
-    {
-        $response = '';
-        foreach ($this-> news as $id => $item) {
-            $response .= "<div>
-<a href='/news/card/{$id}'>
-{$item['title']}
-</a>
-</div>";
 
-        }
-        return $response;
+
+
+
+    public function test()
+    {
+
+        $url = route ('home');
+
+        return view ('news.category', ['news' => $this -> news]);
+
+
     }
+
+
 }

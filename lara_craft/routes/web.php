@@ -17,11 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', [\App\Http\Controllers\GreetingController::class, 'make']);
+Route::get('/greeting', [\App\Http\Controllers\GreetingController::class, 'index'])
+    -> name('home');
 
 
 
 
-Route::get('/category', [\App\Http\Controllers\Admin\NewsCatController::class,'index']);
+Route::get('news/category', [\App\Http\Controllers\Admin\NewsCatController::class, 'test'])
+    -> name("news::category");
+
 Route::get('/news/card/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'card']);
 
