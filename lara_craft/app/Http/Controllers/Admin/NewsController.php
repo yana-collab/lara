@@ -12,9 +12,20 @@ class NewsController extends Controller
 
    }
 
-   public function create ()
+   public function create (Request $request)
    {
-    return view ( 'admin.news.create');
+           $title = $request->input('title');
+           $content = $request->input('content');
+           //save data to db
+           return redirect()->route('admin::news::new');
+
+           //return response()->redirectToRoute('admin::news::create');
+
+   }
+
+   public function new()
+   {
+       return view ( 'admin.news.create');
    }
 
     public function update ()
