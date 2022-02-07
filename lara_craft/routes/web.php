@@ -47,4 +47,4 @@ Route::get('new',  [\App\Http\Controllers\Admin\NewsController::class, 'new'])
 
 Route::get('/news/card/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'card']);
 
-Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);a
+Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);
