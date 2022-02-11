@@ -9,10 +9,10 @@
 
     @forelse ($news as $item)
 
-<a href="/news/card{{ $item [ 'id']}}">
-    {{ $item ['title'] }}
+<a href="{{route('news::card', [$item->id])}}">
+    {{$item->title}}
 </a>
-    <p> {{ $item [ 'text'] }}</p>
+    <p> {{ $item->text }}</p>
 
     @empty
         <p>Auth</p>

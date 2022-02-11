@@ -4,10 +4,10 @@
        </header>
        <main>
            <div>
-       <a href="/category ">News</a>
+       <a href="{{route('news::category')}} ">News</a>
            </div>
            <div>
-           <a href="/add" >Add News</a>
+           <a href="{{route('admin::news::new')}}" >Add News</a>
            </div>
 </main>
        <footer>
