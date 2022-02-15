@@ -7,29 +7,61 @@
 @endsection
 
 @section ('content')
-    <div>
-        {!! Form::open(['route' => 'admin::news::create']) !!}
-
+    <div class="row justify-content-center">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success')}}
+            </div>
+        @endif
+        <div class="col-md-6">
+            <h1>Create news</h1>
+        {!! Form::open(['route' => 'admin::news::save']) !!}
+            @if($model->id)
+                <input type="hidden" name="id" value="{{$model->id}}">
+            @endif
+            <div class="form-group"
         <label>
-            Заголовок
+            Title
         </label>
         <div class="form-group">
-            {!! Form::text('title', '', ['class' => 'form-control']) !!}
-
+            {!! Form::text('title', $model->title ?? old('title'),  ['class' => 'form-control']) !!}
+@error('title')
+            <div class="alert alert-danger">
+                {{$message}}
         </div>
+           @enderror
+        </div>
+            <div class="form-group"
         <label>
-            Содержимое
+            Description
         </label>
-        <div class="form-group">
-            {!! Form::textarea('content', '', ['class' => 'form-control']) !!}
 
+            {!! Form::textarea('content',$model->content ?? old('content') ??"", ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit('send', ['class' => 'btn btn-success']) !!}
-
+            <label>Category</label>
+           {!!Form::select('category_id', $categories, $model->category_id, ['class'=> 'form-control'])!!}
         </div>
-
+<div class="form-group">
+    <input type="hidden" name="active" value="0">
+    <label>
+        {!! Form::checkbox("active", 1, $model->active) !!}
+        Active
+    </label>
+</div>
+            <div class="form-group">
+                <label>Publish Date</label>
+                {!! Form::date(
+    'publish_date',
+    $model->publish_date ?? old('publish_date'),
+    ['dataformatas' => 'Y-m-d', [ 'class'=> 'form-control']]
+) !!}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Save">
+            </div>
 
         {!! Form::close() !!}
+    </div>
     </div>
 @endsection

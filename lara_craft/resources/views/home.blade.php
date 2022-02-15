@@ -7,7 +7,7 @@
        <a href="{{route('news::category')}} ">News</a>
            </div>
            <div>
-           <a href="{{route('admin::news::new')}}" >Add News</a>
+           <a href="{{route('admin::news::create')}}" >Add News</a>
            </div>
 </main>
        <footer>

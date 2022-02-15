@@ -43,8 +43,14 @@ Route::get('index', [\App\Http\Controllers\Admin\NewsController::class, 'index']
 Route::post('create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
     -> name("create");
 
-Route::get('new',  [\App\Http\Controllers\Admin\NewsController::class, 'new'])
-    -> name("new");
+Route::get('update',  [\App\Http\Controllers\Admin\NewsController::class, 'update'])
+    -> name("update");
+
+    Route::get('delete',  [\App\Http\Controllers\Admin\NewsController::class, 'delete'])
+        -> name("delete");
+
+    Route::get('save',  [\App\Http\Controllers\Admin\NewsController::class, 'save'])
+        -> name("save");
 });
 
 //NewsCard________________
