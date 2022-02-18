@@ -1,5 +1,10 @@
 <title>Greeting Page</title>
-<div>
+{{--<div>--}}
+{{--    <a href="{{route('lang', ['lang'=>'ru'])}} ">Ru</a>--}}
+{{--</div>--}}
+{{--<div>--}}
+{{--    <a href="{{route('lang', ['lang'=>'en']}}" >En</a>--}}
+{{--</div>--}}
        <header><h1>LaraNews</h1>
        </header>
        <main>

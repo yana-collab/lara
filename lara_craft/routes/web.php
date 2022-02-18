@@ -47,7 +47,7 @@ Route::get('/update/{news}',  [\App\Http\Controllers\Admin\NewsController::class
     ->where('news', '[0,9]+')
     -> name("update");
 
-    Route::post('/delete/{id}',  [\App\Http\Controllers\Admin\NewsController::class, 'delete'])
+    Route::get('/delete/{id}',  [\App\Http\Controllers\Admin\NewsController::class, 'delete'])
         ->where('id', '[0,9]+')
         -> name("delete");
 
@@ -66,3 +66,7 @@ Route::get('/news/card/{news}', [\App\Http\Controllers\Admin\NewsCatController::
 Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);
 
 
+Route::get( '/lang/{lang}', [\App\Http\Controllers\LangController::class, 'index'])
+    ->where('lang', 'w+')
+    ->name('lang')
+    ->middleware('lang');

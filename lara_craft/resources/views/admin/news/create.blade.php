@@ -1,4 +1,8 @@
+@php
+/**  @var \App\Models\News $model */
+/** @var \App\Models\Category[] $categories  */
 
+@endphp
 @extends('layouts.main')
 
 @section('title')
