@@ -11,7 +11,10 @@ class News extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'source',
+        'publish_date',
+        'category_id'
     ];
 
 
@@ -19,11 +22,22 @@ class News extends Model
     {
         return static::query()
             ->where('category_id', $categoryId)
-            ->get();//SELECT * FROM news
+            ->get(); //SELECT * FROM news
     }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function rules()
+    {
+        return $rules = [
+            'title' => 'required|max:50|unique:news',
+            'content' => 'required|max:1000',
+            'category_id' => 'required|integer|exists:categories,id',
+            'active' => 'boolean',
+            'publish_date' => 'date'
+        ];
     }
 }

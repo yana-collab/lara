@@ -37,14 +37,22 @@ Route::group([
     'prefix' => '/admin/news',
     'as' => 'admin::news::'
 ], function () {
-Route::get('index', [\App\Http\Controllers\Admin\NewsController::class, 'index'])
+Route::get('/', [\App\Http\Controllers\Admin\NewsController::class, 'index'])
         -> name ("index");
 
-Route::post('create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
+Route::get('/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
     -> name("create");
 
-Route::get('new',  [\App\Http\Controllers\Admin\NewsController::class, 'new'])
-    -> name("new");
+Route::get('/update/{news}',  [\App\Http\Controllers\Admin\NewsController::class, 'update'])
+    ->where('news', '[0,9]+')
+    -> name("update");
+
+    Route::post('/delete/{id}',  [\App\Http\Controllers\Admin\NewsController::class, 'delete'])
+        ->where('id', '[0,9]+')
+        -> name("delete");
+
+    Route::post('/save',  [\App\Http\Controllers\Admin\NewsController::class, 'save'])
+        -> name("save");
 });
 
 //NewsCard________________
