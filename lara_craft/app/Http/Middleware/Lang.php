@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 class Lang
@@ -19,7 +20,7 @@ class Lang
     {
         if(Session::exists('lang')) {
 
-            \App::setLocal(Session::get('lang'));
+            App::setLocal(Session::get('lang'));
         }
         return $next($request);
     }

@@ -35,7 +35,8 @@ Route::get('/news/category/{category_id}', [\App\Http\Controllers\Admin\NewsCatC
 
 Route::group([
     'prefix' => '/admin/news',
-    'as' => 'admin::news::'
+    'as' => 'admin::news::',
+    'middleware' => ['auth']
 ], function () {
 Route::get('/', [\App\Http\Controllers\Admin\NewsController::class, 'index'])
         -> name ("index");
@@ -70,3 +71,12 @@ Route::get( '/lang/{lang}', [\App\Http\Controllers\LangController::class, 'index
     ->where('lang', 'w+')
     ->name('lang')
     ->middleware('lang');
+
+Auth::routes(['register'=> false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home');
+
+Route::match(['get','post'], '/admin/profile',['\App\Http\Controllers\Admin\ProfileController', 'update'])
+    ->name('admin:profile')
+    ->middleware('auth');
