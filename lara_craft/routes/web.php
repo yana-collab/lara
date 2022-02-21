@@ -48,11 +48,11 @@ Route::get('/update/{news}',  [\App\Http\Controllers\Admin\NewsController::class
     ->where('news', '[0,9]+')
     -> name("update");
 
-    Route::get('/delete/{id}',  [\App\Http\Controllers\Admin\NewsController::class, 'delete'])
+Route::get('/delete/{id}',  [\App\Http\Controllers\Admin\NewsController::class, 'delete'])
         ->where('id', '[0,9]+')
         -> name("delete");
 
-    Route::post('/save',  [\App\Http\Controllers\Admin\NewsController::class, 'save'])
+Route::post('/save',  [\App\Http\Controllers\Admin\NewsController::class, 'save'])
         -> name("save");
 });
 
@@ -72,7 +72,7 @@ Route::get( '/lang/{lang}', [\App\Http\Controllers\LangController::class, 'index
     ->name('lang')
     ->middleware('lang');
 
-Auth::routes(['register'=> false]);
+\Illuminate\Support\Facades\Auth::routes(['register'=> false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');

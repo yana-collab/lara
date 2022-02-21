@@ -1,6 +1,6 @@
-<div class="menu">
+<div class="col-md-6">
     @foreach($menu as $item)
-        <div>
+        <div class="col-md">
             <a href="{{route($item['alias'])}}">
                 {{$item[ 'title']}}
             </a>

@@ -13,7 +13,7 @@ class AdminNewsSaveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,6 @@ class AdminNewsSaveRequest extends FormRequest
     public function rules()
     {
         return [
-
                 'title' => 'required|max:50|unique:news',
                 'content' => 'required|max:1000',
                 'category_id' => 'required|integer|exists:categories,id',
@@ -32,6 +31,7 @@ class AdminNewsSaveRequest extends FormRequest
                 'publish_date' => 'date'
 
         ];
+
     }
 
 }

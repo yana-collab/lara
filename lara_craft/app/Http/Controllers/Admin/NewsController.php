@@ -29,7 +29,6 @@ class NewsController extends Controller
 
     public function update (Category $category, News $news)
     {
-
         return view ( "admin.news.create", [
             'model' => $news,
             'categories' => $category->getList()
@@ -58,7 +57,7 @@ class NewsController extends Controller
         $id = $request->post('id');
         $model = $id  ? News::find($id) : new News();
         $model -> fill($request->all());
-        $model-> save();
+        $model -> save();
         return redirect()->route("admin::news::update",
             ['news'=> $model -> id])
             ->with('success', "Данные сохранены");

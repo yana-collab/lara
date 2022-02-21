@@ -29,32 +29,28 @@
         <div class="col-md-6">
             <h1>Create news</h1>
         {!! Form::open(['route' => "admin::news::save"]) !!}
-
             @if($model->id)
                 <input type="hidden" name="id" value="{{ $model->id}}">
             @endif
             <div class="form-group">
-        <label>
-            Title
-        </label>
+        <label>Title</label>
                 @error('title')
                 <div class="alert alert-danger">
                     {{ $message }}
                 </div>
                 @enderror
         <div class="form-group">
-            {!! Form::text("title", $model->title ?? old('title'),  ['class' => 'form-control']) !!}
+            {!! Form::text('title', $model->title ?? old('title'),  ['class' => 'form-control']) !!}
         </div>
             <div class="form-group">
         <label>
             Description
         </label>
-            {!! Form::textarea("content",$model->content ?? old('content') ??"", ['class' => 'form-control']) !!}
-
+            {!! Form::textarea('content',$model->content ?? old('content') ?? "", ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             <label>Category</label>
-           {!!Form::select("category_id", $categories, $model->category_id, ['class'=> 'form-control'])!!}
+           {!!Form::select('category_id', $categories, $model->category_id, ['class'=> 'form-control'])!!}
 
         </div>
 <div class="form-group">
