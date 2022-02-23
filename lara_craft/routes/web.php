@@ -31,7 +31,7 @@ Route::get('/news/category/{category_id}', [\App\Http\Controllers\Admin\NewsCatC
 //Route::match(['get','post'],'admin/news/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
    // -> name("admin::news::create");
 
-//NewsController_________________________________
+//Админка
 
 Route::group([
     'prefix' => '/admin/news',
@@ -56,21 +56,25 @@ Route::post('/save',  [\App\Http\Controllers\Admin\NewsController::class, 'save'
         -> name("save");
 });
 
-//NewsCard________________
+//Карточка новостей
 
 Route::get('/news/card/{news}', [\App\Http\Controllers\Admin\NewsCatController::class, 'card'])
     ->where('news', '[0-9]+')
     ->name("news::card");
 
 
-//DB
+//База данных
 Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);
 
+
+//Валидация языки настройка
 
 Route::get( '/lang/{lang}', [\App\Http\Controllers\LangController::class, 'index'])
     ->where('lang', 'w+')
     ->name('lang')
     ->middleware('lang');
+
+//Регистрация
 
 \Illuminate\Support\Facades\Auth::routes(['register'=> false]);
 
@@ -80,3 +84,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::match(['get','post'], '/admin/profile',['\App\Http\Controllers\Admin\ProfileController', 'update'])
     ->name('admin:profile')
     ->middleware('auth');
+
+//Парсинг
+
+Route::get('parser', [\App\Http\Controllers\Admin\ParserController::class, 'index'])
+    ->name("parser");
+
+
+//Авторизация вк
+
+Route::group([
+    'prefix' => 'social',
+    'as' => 'social::',
+], function () {
+    Route::get('/login', [\App\Http\Controllers\SocialController::class, 'loginVk'])
+        ->name('login-vk');
+    Route::get('/response', [\App\Http\Controllers\SocialController::class, 'responseVk'])
+        ->name('response-vk');
+});
