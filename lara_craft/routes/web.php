@@ -17,11 +17,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', [\App\Http\Controllers\GreetingController::class, 'make']);
+Route::get('/greeting', [\App\Http\Controllers\GreetingController::class, 'index'])
+    -> name('home');
 
 
+Route::get('news/category', [\App\Http\Controllers\Admin\NewsCatController::class, 'test'])
+    -> name("news::category");
 
+//Route::match(['get','post'],'admin/news/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
+   // -> name("admin::news::create");
 
-Route::get('/category', [\App\Http\Controllers\Admin\NewsCatController::class,'index']);
+//NewsController_________________________________
+
+Route::group([
+    'prefix' => '/admin/news',
+    'as' => 'admin::news::'
+], function () {
+Route::get('index', [\App\Http\Controllers\Admin\NewsController::class, 'index'])
+        -> name ("index");
+
+Route::post('create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
+    -> name("create");
+
+Route::get('new',  [\App\Http\Controllers\Admin\NewsController::class, 'new'])
+    -> name("new");
+});
+
+//NewsCard________________
+
 Route::get('/news/card/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'card']);
 
+Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Facade\FlareClient\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $menu = [
+            [
+                'title' => 'Admin',
+                'alias' => 'home'
+            ],
+            [
+                'title' => 'News',
+                'alias' => 'news::category'
+            ]
+        ];
+       \View::share('menu', $menu);
     }
 }

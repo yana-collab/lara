@@ -7,34 +7,34 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    private $news = [
-        1 => [
-            'title' => 'Politics'
-        ],
-        2 => [
-            'title' => 'Sport'
-        ],
-        3 => [
-            'title' => 'Breaking News'
-        ]
-    ];
+   public function index ()
+   {
 
-    public function index()
+   }
+
+   public function create (Request $request)
+   {
+           $title = $request->input('title');
+           $content = $request->input('content');
+           //save data to db
+           return redirect()->route('admin::news::new');
+
+           //return response()->redirectToRoute('admin::news::create');
+
+   }
+
+   public function new()
+   {
+       return view ( 'admin.news.create');
+   }
+
+    public function update ()
     {
-        $response = '';
-        foreach ($this->$news as $id => $item) {
-            $response .= "<div>
-<a href='/news/card/{$id}'>
-{$item['title']}
-</a>
-</div>";
 
     }
-        return $response;
-    }
-    public function card($id)
+
+    public function delete ()
     {
-    $news = $this->news[$id];
-    return $news['title'];
+
     }
 }
